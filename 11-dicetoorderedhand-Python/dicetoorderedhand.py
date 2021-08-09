@@ -11,5 +11,24 @@
 
 
 def dicetoorderedhand(a, b, c):
-	# your code goes here
-	pass
+    ans=""
+    if(a>b and a>c):
+        ans=ans+str(a)
+        if(b>c):
+            ans=ans+str(b)+str(c)
+        else:
+            ans=ans+str(c)+str(b)
+    elif(b>a and b>c):
+        ans=ans+str(b)
+        if(a>c):
+            ans=ans+str(a)+str(c)
+        else:
+            ans=ans+str(c)+str(a)
+    else:
+        ans=ans+str(c)
+        if(a>b):
+            ans=ans+str(a)+str(b)
+        else:
+            ans=ans+str(b)+str(a)    
+    return int(ans)    
+
