@@ -33,21 +33,54 @@
 # into a sorted hand.
 # Hint: Also, remember to use % to get the one's digit, and use //= to get rid of the one's digit.
 
-def playstep2(hand, dice):
-    dicelist=[int(i) for i in str(dice)]
-    x=dicelist[-2:]
-    # print(x)
-    handlist=[int(i) for i in str(hand)]
-    if(handlist[2]==handlist[1]):   
-        handlist[0]=x[1]
-        dicelist.pop()
-    else:
-        handlist[1]=x[1]
-        handlist[-1]=x[0]
-        dicelist.pop(-1)
-        dicelist.pop(-1)
-    handlist.sort(reverse=True)
-    h="".join(str(e) for e in handlist)
-    d="".join(str(e) for e in dicelist)
 
+from collections import Counter
+
+#this function runs when we encounter a matching pair in hand
+def matchfound(handlist, x):
+    #to replace the unique element
+    #we need to find it's index and replace it
+    #To do so, I used counter function to get the index of unique element
+    counter= Counter(handlist)
+    unique_ele=min(counter, key=counter.get)
+    required_index=handlist.index(unique_ele)
+    #As we got the index of unique element, replace it with the right most element of dice
+    handlist[required_index]=x[-1]
+    #according to the condition as, the hand has to be in an ordered way, we sorted below
+    handlist.sort(reverse=True)
+    return handlist
+
+#this function runs when we encounter a matching pair in hand
+def matchnotfound(handlist,x):
+    #As match is not found
+    #keep the highest element and 
+    #replace the remaining with the numbers from dice
+    new=[max(handlist)]
+    #adding the last to digits from dice from right side
+    x=x[::-1]
+    ans=new+x
+    ans.sort(reverse=True)
+    return ans
+
+
+def playstep2(hand, dice):
+    #converting numbers into lists for program
+    dicelist=[int(i) for i in str(dice)]
+    #getting the last two digits from the dice
+    x=dicelist[-2:]
+    #converting numbers into lists for program
+    handlist=[int(i) for i in str(hand)]
+
+    #check whether the hand contains any matching pair or not
+    hand_list_set=set(handlist)
+    if(len(handlist) == len(hand_list_set)):
+        ans=matchnotfound(handlist,x)
+        dicelist.pop(-1)
+        dicelist.pop(-1) 
+    else:
+        ans=matchfound(handlist, x)
+        dicelist.pop()
+    #converting back into numbers
+    h="".join(str(e) for e in ans)
+    d="".join(str(e) for e in dicelist)
     return ((int(h), int(d)))
