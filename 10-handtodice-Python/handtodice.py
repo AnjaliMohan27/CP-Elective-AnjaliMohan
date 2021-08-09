@@ -7,4 +7,6 @@
 
 def handtodice(hand):
 	# your code goes here
-	pass
+    #convert the num into list of items
+    num_list=[int(i) for i in str(hand)]
+    return tuple(num_list)
