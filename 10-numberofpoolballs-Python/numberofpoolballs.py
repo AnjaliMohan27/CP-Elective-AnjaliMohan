@@ -8,5 +8,10 @@
 # number of rows. For this problem and the next, you should research Triangular Numbers.
 
 def numberofpoolballs(rows):
-	# Your code goes here
-	pass
+    triangular_nums={}
+    addition=0
+    n=200000
+    for i in range(n+1):
+        addition = addition+i
+        triangular_nums[i]=addition
+    return triangular_nums.get(rows)
