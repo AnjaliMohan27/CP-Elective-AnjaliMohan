@@ -11,9 +11,17 @@
 
 def lookandsay(a):
     result=[]
-    if( a==[()],):
-        return []
-    else:
-        for i in a:
-            result=result+[i[1]]*i[0]
-    return result
+    x=0
+    count=1
+    if(len(a)==0):
+        return result
+    for i in a:
+        if(i!=x):
+            result.append((count,x))
+            x=i
+            count=1
+        else:
+            count=count+1
+    result.append((count,i))
+
+    return result[1:]
