@@ -5,10 +5,14 @@
 import math
 
 def isperfectsquare(n):
-	# your code goes here
-    if(type(n)!=int):
-        return False
-    if(n>0):
-        squ=math.sqrt(n)
-        return ((squ*squ)==float(n))
+  if isinstance(n, int) and n>=0:
+    return n == (math.sqrt(n)**2)
+  elif isinstance(n, int) and  n<=0:
+    return False
+  elif isinstance(n, float):
+    return False
+  elif n.isdigit():
+    n=int(n)
+    return n == (math.sqrt(n)**2)
+  else:
     return False
