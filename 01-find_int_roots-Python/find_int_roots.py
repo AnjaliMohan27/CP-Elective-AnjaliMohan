@@ -7,7 +7,10 @@
 # return root1, root2
 
 import math
+
 def fun_find_int_roots(a, b, c):
-	return 0, 0
+    x1=int((-b-math.sqrt(b**2-4*a*c))/2*a)
+    y1=int((-b+math.sqrt(b**2-4*a*c))/2*a)
+    return (x1,y1)
 
 
