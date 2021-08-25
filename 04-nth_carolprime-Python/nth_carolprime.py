@@ -9,5 +9,28 @@
 # for primality (and you may need to think about that hint for a while for it to make sense!).
 
 
+def isPrime(x):
+    if(x<2):
+        return False
+    if(x<=3):
+        return True
+    if(x%2==0 or x%3==0):
+        return False
+    i=5
+    while(i*i<=x):
+        if(x%i==0 or x%(i+2)==0):
+            return False
+        i=i+6
+    return True
+def carol(x):
+    result=(2**x)-1
+    return result*result-2
+
 def fun_nth_carolprime(n):
-    return 0
+    p,q=0,0
+    while(p<=n):
+        q+=1
+        c=carol(q)
+        if(isPrime(c)):
+            p+=1
+    return c
