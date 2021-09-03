@@ -24,6 +24,34 @@ Thus, in this example, friendsOfFriends should return:
 }
 '''
 
+
+def readDict():
+    a = {}
+    n = int(input())
+    for i in range(n):
+        s = input().split()
+        a[s[0]] = set(s[1:])
+    return a
+
 def friendsOfFriends(d):
-    # Your code goes here...
-    return None
+    # your code goes here   
+    Dict = dict()
+    for friend in d:
+        Friend = d[friend]
+        if d[friend] == set():
+            Dict[friend] = set()
+        for v in Friend:
+            if v in d:
+                for a in d[v]:
+                    if a not in Friend:
+                        if a == friend:
+                            pass
+                        else:
+                            if friend not in Dict:
+                                Dict[friend] = set([a])
+                            else:
+                                Dict[friend].add(a)
+    return Dict                                      
+
+
+
