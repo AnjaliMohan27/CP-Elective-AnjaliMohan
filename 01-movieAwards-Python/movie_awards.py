@@ -20,5 +20,15 @@ the function should return as follows
 '''
 
 def movie_awards(oscarResults):
-    # Your code goes here...
-    pass
+    movies=[]
+    for i in oscarResults:
+        movies.append(i[1])
+
+    movie_frequency = {}
+    for item in movies:
+        if (item in movie_frequency):
+            movie_frequency[item] += 1
+        else:
+            movie_frequency[item] = 1
+    
+    return movie_frequency
